@@ -8,16 +8,34 @@ const Ship = (length) => {
   }
 
   const _length = length;
+  const _structure = Array(_length).fill(false);
   let _hits = 0;
+  let _row = -1;
+  let _col = -1;
 
   const getLength = () => {
     return _length;
   };
 
-  const hit = () => {
-    if (_hits < _length) {
-      _hits += 1;
+  const hit = (row, col) => {
+    if (row !== _row) {
+      return false;
     }
+
+    const i = col - _col;
+
+    if (i >= 0) {
+      if (!_structure[i]) {
+        _structure[i] = true;
+        if (_hits < _length) {
+          _hits += 1;
+        }
+      }
+
+      return true;
+    }
+
+    return false;
   };
 
   const getHits = () => {
@@ -28,11 +46,17 @@ const Ship = (length) => {
     return _hits === _length;
   };
 
+  const setCoord = (row, col) => {
+    _row = row;
+    _col = col;
+  };
+
   return {
     getLength,
     hit,
     getHits,
     isSunk,
+    setCoord,
   };
 };
 
