@@ -1,10 +1,20 @@
 import Gameboard from "./gameboard";
 import Ship from "./ship";
 
-const Player = () => {
+const Player = (id, autoPlay = false) => {
+  const _id = id;
+  const _autoPlay = autoPlay;
   let _gameboard = null;
   const _opponentBoard = [];
   let _myTurn = false;
+
+  const getId = () => {
+    return _id;
+  };
+
+  const getAutoPlay = () => {
+    return _autoPlay;
+  };
 
   const getMyTurn = () => {
     return _myTurn;
@@ -50,11 +60,18 @@ const Player = () => {
   };
 
   const receiveAttack = (row, col) => {
-    return _gameboard.receiveAttack(row, col);
+    const hit = _gameboard.receiveAttack(row, col);
+    const cell = document.getElementById(`${_id}_${row}_${col}`);
+    if (hit) {
+      cell.classList.add("cell-hit");
+    } else {
+      cell.classList.add("cell-miss");
+    }
+    return hit;
   };
 
   const canAttack = (row, col) => {
-    return _opponentBoard[row][col];
+    return !_opponentBoard[row][col];
   };
 
   const attack = (player, row, col) => {
@@ -62,6 +79,8 @@ const Player = () => {
   };
 
   return {
+    getId,
+    getAutoPlay,
     getMyTurn,
     setMyTurn,
     createGameboard,
