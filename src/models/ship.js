@@ -24,14 +24,13 @@ const Ship = (length) => {
 
     const i = col - _col;
 
-    if (i >= 0) {
-      if (!_structure[i]) {
+    if (i >= 0 && i < _structure.length) {
+      if (_structure[i] === false) {
         _structure[i] = true;
         if (_hits < _length) {
           _hits += 1;
         }
       }
-
       return true;
     }
 
