@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.btn-primary {
+    color: white;
+    background-color: #0284c7;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.boards {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.player-name {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.gameboard {    
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);    
+    gap: 1px;
+}
+
+.cell {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+}
+
+.cell:hover {
+    background-color: green;
+}
+
+.cell-safe {
+    background-color: blue;
+}
+
+.cell-hit {
+    background-color: red;
+}
